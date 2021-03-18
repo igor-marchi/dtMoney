@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { Deshboard } from "./compenents/Deshboard";
+import { Dashboard } from "./compenents/Dashboard";
 import { Header } from "./compenents/Header";
 import { GlobalStyle } from "./styles/Global";
 
@@ -7,7 +7,7 @@ export function App() {
   return (
     <Fragment>
       <Header />
-      <Deshboard />
+      <Dashboard />
       <GlobalStyle />
     </Fragment>
   );
