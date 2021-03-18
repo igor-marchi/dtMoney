@@ -1,10 +1,12 @@
+import { Fragment } from "react";
+import { Header } from "./compenents/Header";
 import { GlobalStyle } from "./styles/Global";
 
 export function App() {
   return (
-    <div className="App">
-      <h1>Hello</h1>
+    <Fragment>
+      <Header />
       <GlobalStyle />
-    </div>
+    </Fragment>
   );
 }
