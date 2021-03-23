@@ -4,7 +4,7 @@ import { createServer } from 'miragejs';
 import { App } from './App';
 
 createServer({
-  routes(){
+  routes() {
     this.namespace = 'api';
 
     this.get('/transactions', () => {
@@ -15,11 +15,11 @@ createServer({
           amount: 400,
           type: 'deposit',
           category: 'food',
-          createdAt: new Date()
-        }
-      ]
+          createdAt: new Date(),
+        },
+      ];
     });
-  }
+  },
 });
 
 ReactDOM.render(
