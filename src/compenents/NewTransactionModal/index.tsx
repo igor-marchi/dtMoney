@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import Modal from 'react-modal';
+
 import CloseImg from '../../assets/close.svg';
 import IncomeImg from '../../assets/income.svg';
 import OutcomeImg from '../../assets/outcome.svg';
+import { useTransactions } from '../../hooks/useTransactions';
 
 import { Container, TransacionTypeContainer, RadioBox } from './styles';
 
@@ -15,7 +17,28 @@ export function NewTransactionModal({
   isOpen,
   onRequestClose,
 }: NewTransactionModalProps) {
+  const { createTransaction } = useTransactions();
+
   const [type, setType] = useState('deposit');
+
+  const [title, setTitle] = useState('');
+  const [category, setCategory] = useState('');
+  const [amount, setAmount] = useState(0);
+
+  async function handleCreateNewTransaction(event: FormEvent) {
+    event.preventDefault();
+    await createTransaction({
+      title,
+      amount,
+      category,
+      type,
+    });
+    setTitle('');
+    setAmount(0);
+    setCategory('');
+    setType('');
+    onRequestClose();
+  }
 
   return (
     <Modal
@@ -31,11 +54,21 @@ export function NewTransactionModal({
       >
         <img src={CloseImg} alt="Fechar Modal" />
       </button>
-      <Container>
+      <Container onSubmit={handleCreateNewTransaction}>
         <h2>Cadastrar Transação</h2>
 
-        <input type="number" placeholder="Título" />
-        <input type="number" placeholder="Valor" />
+        <input
+          type="text"
+          placeholder="Título"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+        <input
+          type="number"
+          placeholder="Valor"
+          value={amount}
+          onChange={(e) => setAmount(Number(e.target.value))}
+        />
 
         <TransacionTypeContainer>
           <RadioBox
@@ -63,7 +96,11 @@ export function NewTransactionModal({
           </RadioBox>
         </TransacionTypeContainer>
 
-        <input placeholder="Categoria" />
+        <input
+          placeholder="Categoria"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+        />
 
         <button type="submit">Cadastrar</button>
       </Container>
