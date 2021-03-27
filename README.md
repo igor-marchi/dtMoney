@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  <img alt="AppDemo" src="./src/assets/Github/dtmoney.gif" />
+  <img alt="AppDemo" src="./src/assets/GitHub/dtmoney.gif" />
 </p>
 
 ## :rocket: Technologies
